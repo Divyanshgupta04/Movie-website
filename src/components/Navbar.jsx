@@ -1,47 +1,49 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
+import React, { useContext } from "react";
+import { MovieContext } from "../context/MovieContext";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
-  const { register, handleSubmit } = useForm();
-
-  const onSearch = (data) => {
-    console.log('Search Query:', data.search);
-  };
+  const { searchtext, setSearchtext, handlesearch } = useContext(MovieContext);
+  const navigate = useNavigate();
 
   return (
-    <nav className="bg-gray-800 text-white px-6 py-4 flex justify-between items-center shadow-md">
-      
-      <div className="text-2xl font-bold">MySite</div>
-
-     
-      <ul className="flex space-x-6">
-        <li><a href="#" className="hover:text-gray-300">Home</a></li>
-        <li><a href="#" className="hover:text-gray-300">About Us</a></li>
-      </ul>
-
-      
-      <div className="flex items-center space-x-4">
-        
-        <form onSubmit={handleSubmit(onSearch)} className="flex">
-          <input
-            {...register('search')}
-            type="text"
-            placeholder="Search..."
-            className="px-2 py-1 rounded-l-md text-black"
-          />
-          <button
-            type="submit"
-            className="bg-blue-600 px-3 py-1 rounded-r-md hover:bg-blue-700"
-          >
-            Go
-          </button>
-        </form>
-
-       
-        <button className="bg-green-600 px-3 py-1 rounded hover:bg-green-700">Login</button>
-        <button className="bg-yellow-500 px-3 py-1 rounded hover:bg-yellow-600">Signup</button>
+    <div
+      className="h-15 flex items-center gap-70 "
+      style={{ backgroundColor: "#251E34" }}
+    >
+      <div className="flex items-center gap-3 ml-3">
+        <h1 className="h-8 w-8 border flex items-center justify-center rounded-md bg-[#14121F]">
+          <i className="fa-solid fa-bars-staggered text-white"></i>
+        </h1>
+        <h1>
+          <i className="fa-solid fa-video text-3xl text-[#9B92FE]"></i>
+        </h1>
       </div>
-    </nav>
+      <div style={{ backgroundColor: "#14121F" }} className="rounded-md">
+        <i className="fa-solid fa-magnifying-glass text-white ml-2"></i>{" "}
+        <input
+          className=" text-white w-130 "
+          style={{outline:"none"}}
+          placeholder="Search"
+          onChange={(e) => {
+            setSearchtext(e.target.value);
+            // handlesearch(e.target.value)
+            // navigate("/testpage")
+          }}
+          value={searchtext}
+        />
+        <button
+          className="text-white text-sm font-thin m-1 bg-[#251F35] px-2 py-1 hover:bg-[#3a3153ff] rounded-md"
+          onClick={() => {
+            if(searchtext.trim() !== "")  {
+            handlesearch(searchtext)
+            navigate("/searchpage")}
+          }}
+        >
+          <i className="fa-solid fa-droplet text-sm font-thin"></i>Fliter
+        </button>
+      </div>
+    </div>
   );
 }
 
