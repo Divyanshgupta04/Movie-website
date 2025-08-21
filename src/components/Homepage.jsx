@@ -61,7 +61,7 @@
 // export default Homepage
 
 import React, { useContext, useState } from 'react'
-import Sidebar from './Sidebar'
+import Sidebar from '../components/Sidebar'
 import Card1 from './Card1'
 import { MovieContext } from '../context/MovieContext'
 // import { useSidebar } from '../context/SidebarContext' // Import the sidebar context

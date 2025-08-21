@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Homepage from './Components/Homepage';
+import Homepage from './components/Homepage';
 import Navbar from './components/Navbar';
-import Sidebar from './Components/Sidebar';
+// import Sidebar from './components/Sidebar';
 import Page from './components/Page';
 import Testpage from './components/Testpage';
 import Searchpage from './components/Searchpage';
