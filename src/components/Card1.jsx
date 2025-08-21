@@ -9,7 +9,7 @@ function Card1({lola}) {
    <>
    {lola.map((item,index)=>{//slice method use kara ge chota ya desired array length ke liya 
       return(
-         <Link to={`/page/${item.id}`}> <div key={item.id} className='relative overflow-hidden h-[260px] w-[190px] flex flex-col text-white  ' >
+         <Link to={`/page/${item.id}`}><div key={item.id} className='relative overflow-hidden h-[260px] w-[190px] flex flex-col text-white  ' >
          <img className='absolute inset-0 hover:scale-110 duration-300  ' src={`https://image.tmdb.org/t/p/w200/${item.poster_path}`}/>
 
         <h1 className='absolute p-2 font-bold italic text-xl'>HD</h1>

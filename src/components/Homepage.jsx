@@ -86,7 +86,7 @@ function Homepage() {
                     isExpanded ? 'w-0' : 'w-'
                 }`}>
                     <div className='flex gap-5 mb-6 overflow-x-auto'>
-                        <Cardhead lola={movie.slice(0, 3)} />
+                        <Cardhead lola={movie.slice(0,3)} />
                     </div>
                     
                     <div className='mb-8'>

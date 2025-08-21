@@ -1,11 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Cardhead({lola}) {
   return (
     <>
     {lola.map((item,index)=>{
         return(
-            <div key={index} className='overflow-hidden relative h-[215px] w-[360px] bg-[#251E34] flex rounded-lg '>
+            <Link to={`/page/${item.id}`}>
+            <div key={item.id} className='overflow-hidden relative h-[215px] w-[360px] bg-[#251E34] flex rounded-lg '>
         <img className='absolute object rounded-lg hover:scale-115 duration-300' src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`}/>
 
         <div className='relative flex flex-col w-full rounded-lg  mt-36 px-6 bg-gradient-to-t from-[#251E34]/100 via-[#251E34]/90 to-transparent text-white  '>
@@ -21,6 +23,7 @@ function Cardhead({lola}) {
             </div>
         </div>
     </div>
+            </Link>
         )
     })}
     </>

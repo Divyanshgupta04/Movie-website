@@ -1,10 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function Cardheader2({lola}) {
   return (
     <>
     {lola.map((item,index)=>{
         return(
+         <Link to={`/page/${item.id}`}>
           <div key={index} className='h-[65px] w-[230px] bg-[#251E34] flex items-center gap-2 text-white px-3 rounded-xl'>
         <div className=''>
             <img className='h-[50px] w-[50px] rounded-md' src={`https://image.tmdb.org/t/p/w500//${item.backdrop_path}`}/>
@@ -14,6 +16,7 @@ function Cardheader2({lola}) {
             <h1 className=''>{item.release_date}</h1>
         </div>
     </div>
+         </Link>
         )
     })}
     </>

@@ -79,7 +79,7 @@ function Sidebar() {
 
   return (
     <>
-      <div className={`bg-[#0F0F17] min-h-screen p-4 pt-6 flex-col transition-all duration-400 ease-out overflow-hidden ${
+      <div className={`bg-[#0F0F17] min-h-screen p-4 pt-6 flex-col transition-all duration-400 ease-out overflow-visible relative z-40 ${
         isExpanded ? 'w-64' : 'w-15'
       }`} style={{ willChange: 'width' }}>
         
@@ -235,7 +235,7 @@ function Sidebar() {
             )}
           </div>
           {showPopup && (
-            <div className={`absolute z-50 ${isExpanded ? 'left-full top-0 ml-2' : 'ml-10'}`}>
+            <div className={`absolute z-[9999] ${isExpanded ? 'left-full top-0 ml-2' : 'ml-10'}`}>
               <Sidebargenre />
             </div>
           )}
@@ -264,7 +264,7 @@ function Sidebar() {
             )}
           </div>
           {showcomponent1 && (
-            <div className={`absolute z-50 ${isExpanded ? 'left-full top-0 ml-2' : 'ml-10'}`}>
+            <div className={`absolute z-[9999] ${isExpanded ? 'left-full top-0 ml-2' : 'ml-10'}`}>
               <Sidebargenre />
             </div>
           )}
