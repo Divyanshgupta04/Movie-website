@@ -7,8 +7,12 @@ import Sidebar from './Components/Sidebar';
 import Page from './components/Page';
 import Testpage from './components/Testpage';
 import Searchpage from './components/Searchpage';
+import Moviepage from './sidebarcomponents/Moviepage';
+import TVshowspage from './sidebarcomponents/TVshowspage';
+import Tvshowsimdb from './sidebarcomponents/Tvshowsimdb';
 
 function App() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
    <BrowserRouter>
@@ -22,9 +26,17 @@ function App() {
       <Route path='/page/:id' element={<Page/>}/>
       <Route path='/testpage' element={<Testpage/>}/>
       <Route path='/searchpage' element={<Searchpage/>}/>
+      <Route path='/movies' element={<Moviepage/>}/>
+      <Route path='/tvshows' element={<TVshowspage/>}/>
+      <Route path='/topshows' element={<Tvshowsimdb/>}/>
     </Routes>
    </BrowserRouter>
+  
   );
 }
 
 export default App;
+
+
+
+

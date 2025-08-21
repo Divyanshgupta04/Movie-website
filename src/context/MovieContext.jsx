@@ -8,6 +8,7 @@ export const MovieProvider=(props)=>{
     const[popularmovie,setPopularmovie]=useState([]);
     const[movie,setMovie]=useState([]);
     const[tvshows,setTvshows]=useState([]);
+    const[tvshowsimdb,setTvshowsimbd]=useState([]);
     const[searchdata,setSearchdata]=useState([]);
     const[searchtext,setSearchtext]=useState("")
     var [allfucks,setAllfucks]=useState([])
@@ -32,7 +33,7 @@ export const MovieProvider=(props)=>{
         const data1= await res1.json();
         setMovie(data1.results);
         // console.log(popularmovie )
-        console.log(data1.results)
+        // console.log(data1.results)
         }
         catch (err) {
             console.log(err)
@@ -42,6 +43,7 @@ export const MovieProvider=(props)=>{
         moviefetch();
          tvshowsfetch();
          popfetch();
+         tvshowsimbdfetch();
     },[])
 
     async function tvshowsfetch(){
@@ -92,6 +94,18 @@ export const MovieProvider=(props)=>{
     //     allthingsfetch();
     // },[])
     
+     async function tvshowsimbdfetch(){
+        try{
+            const res=await fetch('https://api.themoviedb.org/3/tv/top_rated?api_key=13d4837e94e5f773d6231e13908c4c7c');
+            let data=await res.json();
+            setTvshowsimbd(data.results);
+            console.log("tvshowsimbd",data.results);
+        }
+        catch(err){
+            console.log(err)
+        }
+    }
+
 
     async function handlesearch(searchtext) {
          let res=await fetch(`https://api.themoviedb.org/3/search/multi?api_key=13d4837e94e5f773d6231e13908c4c7c&query=${searchtext}`)
@@ -104,7 +118,7 @@ export const MovieProvider=(props)=>{
     
 
     return(
-        <MovieContext.Provider value={{popularmovie,movie,tvshows,setSearchtext,searchtext,handlesearch,searchdata,allfucks,alldatasearch}}>
+        <MovieContext.Provider value={{popularmovie,movie,tvshows,setSearchtext,searchtext,handlesearch,searchdata,allfucks,alldatasearch,tvshowsimdb}}>
             {props.children}
         </MovieContext.Provider>
     )
