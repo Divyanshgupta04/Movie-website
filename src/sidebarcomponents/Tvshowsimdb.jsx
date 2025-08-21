@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { MovieContext } from '../context/MovieContext'
 import Sidebar from '../components/Sidebar'
-import Card1 from '../Components/Card1'
+import Card1 from '../components/Card1'
 
 function Tvshowsimdb() {
     const {tvshowsimdb}=useContext(MovieContext)
