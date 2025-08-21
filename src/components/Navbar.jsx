@@ -75,6 +75,7 @@ function Navbar() {
           <i className="fa-solid fa-video text-3xl text-[#9B92FE]"></i>
         </h1></Link>
       </div>
+      <h1>maa ka bosda movies </h1>
       <div style={{ backgroundColor: "#14121F" }} className="rounded-md">
         <i className="fa-solid fa-magnifying-glass text-white ml-2"></i>{" "}
         <input
