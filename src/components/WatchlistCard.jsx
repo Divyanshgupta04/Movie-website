@@ -38,7 +38,7 @@ function WatchlistCard({ item }) {
                 </Link>
                 
                 {/* HD Badge */}
-                <div className="absolute top-2 left-2 bg-[#BD7BFE] text-white px-2 py-1 rounded text-xs font-bold">
+                <div className="absolute top-2 left-2  text-white px-2 py-1 rounded text-xs font-bold">
                     HD
                 </div>
 
