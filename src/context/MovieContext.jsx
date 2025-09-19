@@ -11,10 +11,23 @@ export const MovieProvider=(props)=>{
     const[tvshowsimdb,setTvshowsimbd]=useState([]);
     const[searchdata,setSearchdata]=useState([]);
     const[searchtext,setSearchtext]=useState("")
+    const[isLoading,setIsLoading]=useState(false);
     var [allfucks,setAllfucks]=useState([])
      allfucks=[...movie,...popularmovie,...tvshows]
     //  console.log("allfucks wala hai",allfucks)
      var[alldatasearch,setAlldatasearch]=useState([])
+
+    // Load search data from localStorage on component mount
+    useEffect(() => {
+        const savedSearchData = localStorage.getItem('searchData');
+        const savedSearchText = localStorage.getItem('searchText');
+        if (savedSearchData) {
+            setSearchdata(JSON.parse(savedSearchData));
+        }
+        if (savedSearchText) {
+            setSearchtext(savedSearchText);
+        }
+    }, []);
     async function popfetch() {
         try{
             const res= await fetch('https://api.themoviedb.org/3/movie/popular?api_key=13d4837e94e5f773d6231e13908c4c7c')
@@ -108,17 +121,36 @@ export const MovieProvider=(props)=>{
 
 
     async function handlesearch(searchtext) {
-         let res=await fetch(`https://api.themoviedb.org/3/search/multi?api_key=13d4837e94e5f773d6231e13908c4c7c&query=${searchtext}`)
-        let data= await res.json();
-        setSearchdata(data.results)
-        // console.log(searchdata)
-        // console.log(data.results)
-        // return(<Page/>)
+        try {
+            setIsLoading(true);
+            let res = await fetch(`https://api.themoviedb.org/3/search/multi?api_key=13d4837e94e5f773d6231e13908c4c7c&query=${searchtext}`);
+            let data = await res.json();
+            
+            setSearchdata(data.results);
+            setSearchtext(searchtext);
+            
+            // Save to localStorage for persistence
+            localStorage.setItem('searchData', JSON.stringify(data.results));
+            localStorage.setItem('searchText', searchtext);
+        } catch (error) {
+            console.error('Search error:', error);
+            setSearchdata([]);
+        } finally {
+            setIsLoading(false);
+        }
     }
+    
+    // Function to clear search results
+    const clearSearch = () => {
+        setSearchdata([]);
+        setSearchtext('');
+        localStorage.removeItem('searchData');
+        localStorage.removeItem('searchText');
+    };
     
 
     return(
-        <MovieContext.Provider value={{popularmovie,movie,tvshows,setSearchtext,searchtext,handlesearch,searchdata,allfucks,alldatasearch,tvshowsimdb}}>
+        <MovieContext.Provider value={{popularmovie,movie,tvshows,setSearchtext,searchtext,handlesearch,searchdata,allfucks,alldatasearch,tvshowsimdb,isLoading,clearSearch}}>
             {props.children}
         </MovieContext.Provider>
     )

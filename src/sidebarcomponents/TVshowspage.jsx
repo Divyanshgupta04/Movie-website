@@ -22,7 +22,7 @@ function TVshowspage() {
                     TV Shows
                 </h1>
                 
-                <div className='grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8 gap-0'>
+                <div className='grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-6 2xl:grid-cols-6 gap-0'>
                     <Card1 lola={tvshows} />
                 </div>
             </div>

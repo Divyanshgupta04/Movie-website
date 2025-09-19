@@ -60,7 +60,7 @@
 
 // export default Homepage
 
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import Sidebar from '../components/Sidebar'
 import Card1 from './Card1'
 import { MovieContext } from '../context/MovieContext'
@@ -71,10 +71,15 @@ import { Link } from 'react-router-dom'
 import { SidebarContext } from '../context/SidebarContext'
 
 function Homepage() {
-    const { popularmovie, movie, tvshows, setPopularmovie, allfucks } = useContext(MovieContext);
+    const { popularmovie, movie, tvshows, setPopularmovie, allfucks, setSearchtext, clearSearch } = useContext(MovieContext);
     // const { isExpanded } = useSidebar(); // Get the expanded state
     console.log(movie)
     const {isExpanded}=useContext(SidebarContext)
+
+    // Clear search field when homepage loads
+    useEffect(() => {
+        setSearchtext('');
+    }, [setSearchtext]);
 
     return (
         <>
@@ -102,21 +107,21 @@ function Homepage() {
                     <h1 className='text-white text-2xl mb-3'>
                         <i className="fa-solid fa-fire text-[#BD7BFE]"></i> Popular
                     </h1>
-                    <div className='grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8 gap-0 mb-8'>
+                    <div className='grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-6 2xl:grid-cols-6 gap-0 mb-8'>
                         <Card1 lola={popularmovie.slice(0, 18)} />
                     </div>
 
                     <h1 className='text-white text-2xl mb-3'>
                         <i className="fa-solid fa-fire text-[#BD7BFE]"></i> Movies
                     </h1>
-                    <div className='grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8 gap-0 mb-8'>
+                    <div className='grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-6 2xl:grid-cols-6 gap-0 mb-8'>
                         <Card1 lola={movie.slice(0, 8)} />
                     </div>
 
                     <h1 className='text-white text-2xl mb-3'>
                         <i className="fa-solid fa-fire text-[#BD7BFE]"></i> TV Shows
                     </h1>
-                    <div className='grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8 gap-0'>
+                    <div className='grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-6 2xl:grid-cols-6 gap-0'>
                         <Card1 lola={tvshows.slice(0, 8)} />
                     </div>
                 </div>
