@@ -69,19 +69,21 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useSidebar } from "../context/SidebarContext";
+import { useWatchlist } from "../context/WatchlistContext";
 import Sidebargenre from "./Sidebargenre";
 
 function Sidebar() {
   const { isExpanded } = useSidebar();
+  const { watchlistCount } = useWatchlist();
   const [showcomponent, setShowcomponent] = useState(false);
   const [showcomponent1, setShowcomponent1] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
 
   return (
     <>
-      <div className={`bg-[#0F0F17] min-h-screen p-4 pt-6 flex-col transition-all duration-400 ease-out overflow-visible relative z-40 ${
-        isExpanded ? 'w-64' : 'w-15'
-      }`} style={{ willChange: 'width' }}>
+      <div className={`bg-[#0F0F17] min-h-screen transition-all duration-400 ease-out overflow-visible relative z-40 ${
+        isExpanded ? 'w-48 sm:w-56 md:w-64' : 'w-12 sm:w-14 md:w-15'
+      } p-2 sm:p-3 md:p-4 pt-4 sm:pt-5 md:pt-6 flex-col`} style={{ willChange: 'width' }}>
         
         {/* Home */}
         <NavLink 
@@ -179,6 +181,41 @@ function Sidebar() {
               }}
             >
               Top Shows
+            </span>
+          )}
+        </NavLink>
+
+        {/* Watchlist */}
+        <NavLink 
+          to="/watchlist" 
+          className={({ isActive }) =>
+            `${isExpanded ? 'flex items-center gap-3 px-3 py-2' : 'h-9 w-9 flex items-center justify-center'} bg-[#251E34] rounded-md hover:bg-[#BD7BFE] hover:text-black text-white mb-4 transition-all duration-400 ease-out relative ${
+              isActive ? "bg-[#BD7BFE] text-black" : ""
+            }`
+          }
+        >
+          <i className="fa-solid fa-heart"></i>
+          {watchlistCount > 0 && (
+            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold text-[10px]">
+              {watchlistCount > 99 ? '99+' : watchlistCount}
+            </span>
+          )}
+          {isExpanded && (
+            <span 
+              className="whitespace-nowrap"
+              style={{
+                transform: isExpanded ? 'scale(1)' : 'scale(0.8)',
+                opacity: isExpanded ? 1 : 0,
+                transition: 'all 400ms ease-out',
+                transformOrigin: 'left center'
+              }}
+            >
+              My Watchlist
+              {watchlistCount > 0 && (
+                <span className="ml-2 bg-red-500 text-white text-xs px-1.5 py-0.5 rounded-full font-bold">
+                  {watchlistCount}
+                </span>
+              )}
             </span>
           )}
         </NavLink>
